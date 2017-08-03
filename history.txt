@@ -1,0 +1,1142 @@
+v0.91 - 07/09/2000 - Made lookup only get the remote station in their
+                     current grid vs. first found grid.
+
+v0.92 - 07/10/2000 - Added rover rules variable to select between old
+                     and new rules.
+
+v0.93 - 07/14/2000 - Fixed removal of contacts for dupe checking and
+                     fixed map drawing.
+
+v0.94 - 09/12/2000 - Set default values before loading .ini file in
+                     case the .ini file doesn't set everything.
+
+v0.95 - 09/12/2000 - Major overhaul on File commands.  Made default
+                     field to go to the UTC field if in manual time
+                     mode.
+
+v0.96 - 09/13/2000 - Implemented auto save.
+
+v0.97 - 09/13/2000 - Added log list height customization.
+
+v0.98 - 09/26/2000 - Made change to copy sent grid value to map
+                     center when first drawing the map.  After this,
+                     the sent and center fields are decoupled.
+
+v0.99 - 09/29/2000 - Added summary sheet generation.
+
+v0.991 - 10/02/2000 - Revised Log/Edit button scheme.  Trimmed out some
+                      unused procedures.
+
+v0.992 - 6/12/2001 - Fixed a bug in the bearing/distance calculator
+                     so the distance is correct now. Fixed a bug in
+                     reading in files that caused the program to
+                     crash when reading in a blank line.
+
+v0.993 - 6/18/2001 - Added Date and UTC checking when logging a QSO.
+                     Made default action for pressing Enter to replace
+                     existing QSO while in edit mode.  Made default
+                     action for Dupe popup to cancel logging the current
+                     QSO.  Made the multiplier annunciator
+                     non-focus-grabbing.  Made it so My Call and Sent
+                     fields are edited in a separate window so control
+                     flows over them normally as they do not change much.
+                     Made the program search for the last known grid for
+                     a given station when focus leaves the callsign field.
+                     (Note:  these changes were aptly suggested by Ed
+                     Grosso, N1FGY).
+
+v0.994 - 9/10/2001 - Changed date format to YYYY-MM-DD to meet Cabrillo
+                     standard.  Files read in with MM/DD/YYYY date format
+                     will be converted to the new format.  Sorting by date
+                     works properly now. Changed map again so that worked
+                     grids are reverse video.
+
+v0.995 - X/XX/XXXX - Changed map window to use different color highlights
+                     for the number of QSOs per worked grid.
+                   - Added a sort by band button.
+                   - Added network messaging, logging, and log sending
+                   - Added blank header creation for new logs and end
+                     of log marker.
+                   - Made scheduling more readable.
+                   - Added lookup delete
+                   - Made lookup tell you what you need instead of what
+                     you have.
+
+1_0_0 - 2002-02-25 - Fixed Skeds to allow snoozing for 1 or 5 mins.
+                   - Fixed Skeds to remove extra whitespace
+                   - Fixed Skeds to popup a message when a sked is made.
+                   - Fixed so roverlog.ini can set ::setting(mygrid)
+
+1_0_1 - 2002-06-10 - Fixed sort by band function to work with 10 GHz too.
+                   - Fixed problem when replacing an existing QSO where
+                     the variable stuff(editcall) was undefined.
+                   - Fixed make sked function to leave time mode in manual
+                     when done so entering multiple skeds is easier.
+                   - Allow changing call and grid from main window instead
+                     of in a separate box.  This makes making skeds easier.
+                     Tab still makes the cursor go from UTC to Call for
+                     easier paper log copying.
+
+1_0_2 - 2002-06-10 - Fixed windows(my_station) bug when editing a QSO.
+                   - Improved initial font selections.
+
+1_0_3 - 2002-06-11 - Fixed ::setting(bigfont) bug when starting without a
+                     declaration for it in roverlog.ini.
+
+1_1_0 - 2002-06-18 - Better initial Cabrillo header generation 
+                   - Visual indication of automatic received grid fill-in
+                     in addition to audio 
+                   - Make map update when changing band from band menu 
+                   - Add sort buttons for the remaining QSO fields 
+                   - Add hot key for clearing the call and received grid
+                     fields (Alt-Key-q).
+                   - Get time from GPS in addition to position 
+                   - Improve gps server for flexibility 
+                   - Expand map window and add scrolling 
+                   - Partial call lookup 
+                   - Speed up startup and log sharing and overhaul QSO check
+                   - Change dupe handling to find dupe in log and highlight
+
+1_2_0 - 2002-06-20 - Added Alt-Key-a shortcut to help list
+                   - Added Voice and CW keying
+
+1_2_1 - 2002-06-25 - Changed Add_Sked back to setting realtime mode
+                     to prevent sked from triggering on a manual date
+                     and time.
+                   - Made a self-contained executable to eliminate the
+                     need for installing Tcl/Tk under Windows.
+
+1_2_2 - 2002-07-23 - Changed Update Messages button color to pink.
+                   - Added Cabrillo created by line to auto header.
+                   - Added handling in case two CW messages are sent at once.
+                   - Fixed sort by band to use ::setting(bands) for order.
+                   - Fixed partial checking to eliminate duplicate listings
+                     when we've worked one station from many grids.
+                   - Make map range unlimited.
+                   - Set appropriate map scrolling limits.
+                   - Added valid callsign checking.
+                   - Added rover callsign checking.
+
+1_2_3 - 2002-07-25 - Fixed bug in selecting a convenient field to
+                     return to when logging a QSO.
+                   - Added map color schemes.
+
+1_2_4 - 2002-08-16 - Fixed bug in To_LatLon that used the wrong
+                     5th and 6th digits if only 4 digits were provided
+                     by the user.  This would cause extremely erroneous
+                     results if the calculator was used with a 4 digit
+                     grid to/from a 6 digit grid.
+                   - Made option ::setting(clearentry) to erase entry fields
+                     after logging a QSO.
+                   - Made the escape key stop the Keyer.
+                   - Made F1 through F9 play keyer messages.
+                   - Added metacharacters in CW strings and eliminated the
+                     need for an "Update Messages" button.
+                   - Added a .ini variable ::setting(sndenable) and a platform
+                     check for enabling/disabling sound.
+                   - Fixed a bug that caused new multipliers to fail to
+                     appear in the annunciator if the last QSO for that
+                     multiplier was deleted and then a new QSO was made.
+                   - Modularized access to the debug log to allow
+                     bypassing debug messages for code releases. I think
+                     this was causing sluggish performance.
+                   - Added a station stack that keeps a record of the
+                     five most recent calls and grids and allows rotating
+                     between them using Alt-Key-z.
+                   - Added version to roverlog.ini.  It's not used yet,
+                     but it's there for external .ini file editors.
+
+1_3_0 - 2002-09-04 - Save the log when the log header window is closed.
+                   - Do not lookup blanks.
+                   - Fixed summary claimed score for old rules.
+                   - Revamped .ini file.
+                   - Report when .ini file is not found.
+                   - Changed annunciator to be more obvious.
+                   - Revamped key bindings.
+                   - Sort skeds by time each time they change.
+                   - Made CW keyer send text to serial device in addition
+                     audio.
+                   - Added band lock function to prevent changing bands.
+                   - Save after a log sort.
+                   - Make sure selection goes to next log entry after
+                     logging from edit mode.
+                   - Merged Lookup and Partial procedures internally
+                     and included bands.
+                   - Allow showing multiple sent/recd combinations for
+                     a single station in the partial lookup.
+                   - Made Lookup function get 6-digit grids for partial,
+                     lookup, and tab lookup.
+                   - Added external database lookup.
+
+1_3_1 - 2002-09-11 - Fixed faulty lookupgrid database operation.
+                   - Save lookupgrid database when done loading log.
+                   - Fixed bug when deleting first entry in the log.
+                   - Made key/dekey more robust to prevent lockup.
+                   - Added option ::setting(netpopup) to allow focus-grabbing
+                     for network chat messages.
+                   - Allow broadcasting the log over the network.
+                   - Added bearing/distance calculation updates when 
+                     logging a QSO or tabbing out of the received grid
+                     field.
+                   - Rearranged entry field focus sequence to the logical
+                     order.
+                   - Fixed excessive horizontal expansion of the log list
+                     scrollbar under Linux.
+                   - Fixed domain bug in bearing/distance calculation.
+                   - Made network broadcasting skip sending to self and
+                     continue through all peers even if one is down.
+                   - Made sked execution mark the sked as old instead of
+                     deleting it from the list.
+                   - Save log after receiving network QSO.
+
+1_3_2 - 2002-09-25 - Fixed lookup grid access to include 4-digit grids.
+                   - Returned to obtaining field values from log after
+                     loading.
+                   - Made function keys perform keying from any window.
+                   - Perform better checking when attempting net operations
+                     to prevent can't read "peersindex" message.
+                   - Use local variables to prevent spurious band changes
+                     when receiving QSOs over the network.
+                   - Unlock score window for cutting and pasting.
+                   - Highlight the "mycall" field on start up to remind
+                     users to update mycall and sent grid.
+                   - Clear CW message 6 and net message after sending.
+                   - Made procedures to correctly set/unset time mode.
+                   - Added Copy QSO button to get values from log to entry.
+                   - Changed callsign stack to operate more logically.
+                   - Allow upper case shortcut keys.
+
+1_3_3 - 2002-09-26 - Added QSOs by grid information to score window.
+
+1_4_0 - 2002-10-10 - Made changes to make RoverLog compatible with a new
+                     .ini file editor peer scheme.
+                   - Added run frequency window to show current offsets
+                     for other networked stations.
+
+1_4_1 - 2003-01-14 - Fixed "Darwin" (OSX) startup to only skip selecting
+                     the mycall field and re-enable focusing on it.
+                   - Added mymode variable to allow starting with default
+                     mode.
+                   - Changed "L" to "LIGHT" in all .ini files and inied.tcl.
+                   - Check myband and mymode before setting from log.
+                   - Check to see if we got at least one QSO before trying
+                     to set info from last log entry.
+                   - Made Send Freq button send to all.
+                   - Added Alt-Key-space and F10 shortcuts to focus to
+                     Call field.
+                   - Made Tab from Sent field update calculator.
+                   - Added Alt-Key-[ and ] (also Page Down and Page Up)
+                     shortcuts to decrease and increase code speed.
+                   - Added keyer looping.
+                   - Added default values to inied.tcl to prevent errors
+                     when variables are not set in roverlog.ini.
+                   - Converted all default networking port numbers to 3677,
+                     the new port assigned to RoverLog by IANA.
+
+1_4_2 - 2003-01-15 - Made voice keyer and cw keyer stop buttons stop both
+                     keyers to prevent confusion.
+                   - Fixed erroneous truncation of grids in lookup database.
+                   - Fixed inied.tcl to update the .ini file version.
+
+1_5_0 - 2003-02-17 - Added partial window refresh on tab from sent, call,
+                     and recd fields.
+                   - Added Ctrl-F<n> shortcut to select a network peer
+                     and bring up network window.
+                   - Adjusted convenience field selection to put the
+                     insertion point after the entry.
+                   - Check for valid band and mode when starting.
+                   - Dehighlight Copy QSO button if editing.
+                   - Re-added Cancel Edit button to return entry as was.
+                   - Added pass prompting.
+                   - Made Calc window optionally contain a compass with
+                     declination.
+                   - Declination is obtained fromt the GPS server if enabled.
+                   - Made key releases in sent, call, and recd fields update
+                     calc and partial lookup.
+                   - Added all remaining keyer config items to keyer window.
+                   - Use RTS only for PTT.
+                   - Allow logging dupes again.
+                   - Reimplement callsign checking as none, lax, or strict
+                     where strict is the same as the previous call checking
+                     with the addition of US 1x1 calls, and lax is any
+                     combination of alphanumeric characters.
+                   - Added rig control for most (5-byte frequency) Icom
+                     rigs.
+
+1_5_1 - 2003-02-18 - Added LO frequencies by band.
+
+1_5_2 - 2003-03-04 - Revised gps.tcl and rig.tcl to improve customization
+                     of serial ports.
+                   - Added Yaesu and Kenwood rig interfacing to rig.tcl.
+
+1_5_3 - 2003-05-16 - Added periodic polling for Non-Icom rigs to rig.tcl.
+                   - Added "freq!" command to rig.tcl to allow remote
+                     control via TCP/IP.
+                   - Fixed time and date setting routines in gps.tcl.
+
+1_5_4 - 2003-06-18 - Made serial port control omit the -handshake option
+                     for OSX (Darwin) operating system.
+                   - Made inied.tcl descriptions more helpful.
+                   - Allow a different rig server for each band.  The server
+                     can be started multiple times with different serial and
+                     IP ports.  Also, if the serial port is left empty, the
+                     server will not attempt to communicate with a rig.
+                     Instead, you can enter the frequency (for testing).
+                   - Warn the user after logging a QSO with manual time mode.
+                   - Change default GPS IP Port to 32123 to put it in the
+                     range allowed for non-well-known ports.
+                   - Change default Rig IP Port to 32124. See above.
+                   - Fixed rig and gps serial port close routines to protect
+                     against trying to close a port that has already been
+                     closed.
+
+1_5_5 - 2003-06-18 - Fixed merge function so that headers are not
+                     duplicated in the log.  Yikes, that was a bad one!
+                   - Do dupe checking when tabbing out of the call field.
+                   - Removed Alt-Spacebar mapping because it conflicts
+                     with Windows.
+                   - Fixed F10 mapping to raise the main window as well as
+                     bring focus to the call entry.
+                   - Mapped Alt-Key-F4 to hide the current window.
+                   - When QSYing, do not redraw map unless displayed (makes
+                     changing bands A LOT faster, hopefully obviating the
+                     need to make Alt-B bring down a menu for band changes.
+
+1_5_6 - 2003-07-18 - Fixed key bindings to use legal names for Unix.
+                   - Fixed "-state readonly" references to check for
+                     version 8.4 before executing.
+                   - Fixed sorting by call to ignore trailing "/" suffixes.
+                   - Made manual time entry warning configurable to
+                     prevent bugging after-the-fact loggers too much.
+
+1_5_7 - 2003-09-08 - Added keyerttycontrol option to allow control of 
+                     desired handshaking lines for keyer serial port.
+                   - Added serttycontrol option to rig.tcl to allow powering
+                     widget circuits off the serial port by turning on RTS,
+                     DTR, and/or other signals.
+                   - Added Yaesu FT-1000 support to rig.tcl.
+                   - Improved polling configuration for rig.tcl.
+                   - Made Update_Freq send every time it runs instead
+                     of only when the operating frequency changes.
+
+1_6_0 - 2003-10-13 - Added bands and notes to lookup file and window.
+                   - Save window locations/states on exit, restore on start.
+                   - Added a score indicator on the main window.
+                   - Added "Save Settings" option under the Tools menu to
+                     allow saving all user settings to roverlog.ini.
+
+1_7_0 - 2003-10-29 - Added rotor control server and Calc "Move Rotor"
+                     button.  This works with the RC2800DC rotor for now.
+                     Need to find out what other rotors people are using
+                     to know what to add.
+
+1_7_1 - 2004-01-08 - Corrected rotor.ini and rig.ini syntax errors.
+                   - Removed line setting hidden file attribute on the
+                     .roverlog_state.tcl file to prevent *NIX problems.
+                   - Changed all serial port mode strings to lower case
+                     (i.e. n,8,1 instead of N,8,1) to prevent *NIX problems.
+                   - Made rig.tcl frequency display format consistent
+                     with 4 decimal places.
+                   - Added support for Hygain DCU-1 rotor controller.
+
+1_7_2 - 2004-01-15 - Corrected "clock scan" error when adding a sked.
+
+1_8_1 - 2004-01-22 - Revamped skeduling completely.  It should be a lot
+                     easier to use now.
+                   - Made it so duplicate entries are allowed in the lookup
+                     file when loading.  Fields are now concatenated in the
+                     lookupgrid and lookupband databases.
+                   - Made it so you can do a partial lookup without having
+                     worked a station before (i.e. from the lookupgrid
+                     database.
+                   - When loading the lookup database, use 6-digit grids
+                     to replace existing identical 4-digit grids, but not
+                     vice-versa.
+                   - Made passing more user friendly.  Don't just send a
+                     message, bring up the sked window.  Handle pass freqs
+                     well too.
+
+1_8_2 - 2004-01-22 - Added creation of shortcuts for remaining RoverLog
+                     Utilities to start menu.
+
+1_8_3 - 2004-01-27 - Added Yaesu FT-817 support to rig.tcl.  Needs test.
+                   - Corrected shortcut text for Alt-Key-b (Bandlock).
+                   - Added Alt-Key-j binding to Move Rotor.
+                   - Made space work similar to tab in call and recd.
+                   - Made network send to "all" skip peer entries that
+                     are blank or have zero for the port number.
+                   - Made adding or deleting a sked advance you to the next
+                     time slot afterwards.
+                   - Added creation of desktop shortcut to installer.
+                   - Fixed some time lags by disabling debugging.
+                   - Added <contest>basic.ini files that are abbreviated
+                     for more common setups.
+                   - Allow selection of IP address for connection to GPS
+                     and Rotor servers.  This allows one server to serve
+                     multiple RoverLogs on a network.
+                   - Made Shortcuts help window smaller and added scrollbar.
+                   - Made grid/QSOs list in Score window span columns to
+                     make that window less tall on the screen.
+                   - Made default font size 8 instead of 10.  See above.
+                   - Only redraw lookup window if it is open at the time.
+                     This should improve lag a lot.
+                   - Recent entries in the log from another peer are colored
+                     gray instead of the default black.
+                   - Added "Send Skeds" button to Net window to refresh skeds
+                     on other peer stations.
+
+1_8_4 - 2004-02-04 - Added a utility to generate contest-specific headers.
+                   - Added example .ini files for Linux and updated docs.
+                   - Corrected the "label" syntax error bug under Linux.
+                   - Corrected a debug message in rig.tcl for FT-817.
+                   - Corrected mode options in inied.tcl to work with Linux.
+                   - Updated README.TXT to be more clear on serial ports.
+
+1_8_5 - 2004-06-07 - Bundled RoverLog with freewrap561 (vs. old freewrap55).
+                   - Made call entry-bound lookup wait for 2 characters to
+                     be entered before doing the lookup.
+                   - Added a debug statement before the array search start
+                     in Do_Lookup to gauge delay of that step.
+
+1_8_6 - 2004-06-11 - Added some info to Help->About.
+                   - Added libsnack.dll from Tcl/Tk 8.4.6 to package.
+                   - Rig and GPS Server failures no longer wipe out previous
+                     information, and GPS Server failure falls back to
+                     setting date and time from PC Clock.
+
+1_8_7 - 2004-06-12 - Added "Request Frequency" feature on startup and by
+                     button press on the Net window.
+
+1_9_0 - 2004-08-19 - Instead of checking for blank replies from the GPS
+                     server, check for grid, date, and UTC syntax errors.
+                     This should prevent wacky results from getting into
+                     RoverLog's fields.
+                   - Made the Sked window have its own network peer instead
+                     of linking it with the Net window's field.
+                   - Prevent reinitializing Sked window fields when bringing
+                     up that window.
+                   - Made Net and Sked windows sticky upon pressing Enter
+                     instead of making them disappear.
+                   - Show what this station is sending in the Net messages
+                     log as well as showing what's received.
+                   - Heavily revamped the sked window for ease of use.
+                   - Added concept of Work In Progress (WIP), a location
+                     where skeds that have come due go until they are worked.
+                   - Added Alt-A shortcut that accepts the next WIP.
+                   - Added concept of Busy timer (in minutes) that can be set
+                     by a station to prevent anyone else from passing for a
+                     time.
+                   - WIP and Busy are shared across the network.
+                   - Heavily revamped networking for better maintainability.
+                   - Made many cosmetic improvements to most windows.
+                   - Overhauled the way the operating frequency is set
+                     and handled.  Now, a zero port number in the rig
+                     setup will assume a manually entered operating frequency
+                     for that band.  The rigctrl setting now goes away.
+
+1_9_1 - 2004-08-27 - Fixed spacebar behavior in call and recd fields.
+                     Spacebar now toggles you between these fields whereas
+                     Tab and Shift-Tab send you through all fields as normal.
+                   - Made Linux and Darwin platforms skip setting the icon
+                     for windows on all applications.
+                   - Reverted roverlog.tcl back to using no CRs at the end
+                     of every line.  Having CRs broke the Linux version.
+                     Either way is supported under Windows.
+                   - Made references to ::tcl_platform() global instead of
+                     local.
+
+1_9_2 - 2004-09-01 - Made quicksked and quicknet options to switch focus to
+                     Call Entry on Main Window after Sked and Net use.
+                   - Removed skedfreq option.  This is taken care of by the
+                     frequency list.
+
+1_9_3 - XXXX-XX-XX - Made inied range for sked time increment 5 to 60 in
+                     steps of 5.
+
+2_0_0 - 2004-10-15
+
+- Added "annbell" option to enable/disable the bell on annunciator (info)
+  messages.
+- Added "quicklookup" option to enable/disable hiding the partial window
+  upon pressing one of the "Copy" buttons.
+- Made Alt-Key-A binding accept WIP in all windows.
+- Added HCO Light.  Warns you if you have typed in the Call or Recd Entry or
+  changed bands without logging.
+- Made grid lookup only happen once so that what you typed for a received
+  grid does not get wiped out if you furiously hit spacebar like some ops.
+- Only do a partial lookup if the call has changed.
+- Only do a bearing calc if the recd grid has changed.
+- Made the Info field shorter, thereby shrinking the entire main window.
+- Return entries to old values on Cancel Edit (instead of leaving edit
+  values in).
+- Display WIP, limit, and busy timer in Sked window.
+- Display only one Net Log entry for messages sent to all.
+- Highlight messages for me in the Net Log.
+- Added magnetic bearing and reverse to calculator disp.
+- Made the arrow keys work in the Sked List.
+- Made network-initiated redraws of the Sked List leave the list and
+  selection alone when done.
+- Made spacebar from the call and recd fields act better. It doesn't select
+  the entire field any more, but if there are question marks in the field it
+  selects the first one.
+- Established the concept of "blacklisting" the various network connections
+  (keyer, gps, rotor, rigs, and peers) so that if they do not work once,
+  they are not tried again until the operator un-blacklists them.  This
+  should prevent misconfigurations or faulty networks from slowing RoverLog
+  down.
+- Made a simpler Pass window that can be used instead of the Sked window for
+  immediate passes.  This also uses a different net message to prevent
+  timing issues from dropping passes.  In other words, a pass is now
+  guaranteed to get added to WIP if received vs. having to go through the
+  sked list first.
+- Added a "wipbusy" setting that allows you to specify a number of minutes
+  to set the busy timer to when you accept WIP.
+- Made the Lookup window select (if possible) the line that matches the
+  current station, grids, etc.
+- Made band changes in the Pass and Sked windows look up the last operating
+  frequency used on that band.
+- Moved the keyer out of the main program to allow its use stand-alone
+  without logging with RoverLog and to improve performance.
+- Removed the keyer options from inied.tcl and move them to default.rlk.
+- Added the ability for operators to select their own voice keyer setup and
+  save it so that when operators switch they can switch "profiles".  This
+  will also allow rovers to set up ahead of time for different grids and
+  switch grid profiles after moving.
+
+2_0_1 - 2004-10-21
+
+- Removed unused "Partial" button and converted remaining lookups to partial.
+- Corrected the magnetic bearing calculation.
+
+2_0_2 - 2005-01-08
+
+- Changed bad reference to Sked_Check to Check_Sked.
+- Corrected arguments to Add_WIP in Update_Both that had caused an error
+  when a sked was moved into WIP.
+- Moved voice keying into external keyer where it is supposed to be.
+- Removed left over keyer references.
+
+2_1_0 - 2005-01-11
+
+- Consolidated main window buildup into Build_Main.
+- Reversed wm commands in Store_Loc to permit window locations to work.
+- Added keyer play buttons to the RoverLog keyer window.  Removed IP address
+  and port from this dialog.
+- Added the ability for RoverLog to start its modules (gps, keyer, rig,
+  rotor, roverclk) on start up.
+- Corrected setting RoverLog window locations on startup.
+- Added capability for modules to store and restore locations.
+
+
+2_1_1 - 2005-01-15
+
+- Fixed multiplier display in log window to work properly.  It was a color
+  for non-dupes before, not new mults like it should be.
+- Fixed score redraw to give the bottom line in the entry to the bottom
+  left of the main window again.  I had stopped the score from being
+  calculated to try to save CPU after each entry, but I think it's better
+  to have this displayed.
+- Added user configuration of log colors for new multipliers (net and local).
+- Made F1-Fn selectable between QSYing to Band 1-n and playing Keyer message
+  1-n.
+- Somewhere previously made Alt-Key-b QSY up and Alt-Key-B QSY down.
+- Added buddies lookup function Alt-Key-L (Alt-Key-l is still partial
+  lookup). Enter buddies in inied.tcl.
+
+2_1_2 - 2005-01-18
+
+- Fixed module spawning so it checks for OS version to use correct exec
+  string for non-Windows OSs.
+
+2_1_3 - 2005-01-18
+
+- Fixed keyer to allow sound for Darwin (MAC OS).
+- Fixed roverclk to skip setting the -topmost attribute if not under windows.
+- Fixed RoverLog to correctly restore subwindow locations even if spawning
+  other modules.
+- Changed default serial port for Darwin (MAC OS) to /dev/cu.USA19QW11P1.1.
+
+2_1_4 - 2005-01-20
+
+- Changed F10 and F11 to QSY to bands 9 and 10 if set for QSY (vs. Keyer).
+- Changed F12 to go to call field (instead of F10).
+- Added Buddies lookup button below Lookup button.  Alt-Key-L still works
+  too.
+- Added Speed and Course fields to Calc and GPS server for Rovers to line up
+  with.
+- Made Pass window go away after entering a pass for myself.  It already went
+  away when making a pass to someone else.
+- Made Sked/Pass Freq come from the Peer's Operating Freq on Popping up Pass
+  or Sked.
+- Made Sked window "now" redraw for the next time increment.  Passes are for
+  the true "now".
+- Made the periodic frequency updater save any entry into the LO/Operating
+  Frequency before refreshing to avoid wiping out manually-entered values.
+- Made left and right bracket work to toggle through peers when focus is in
+  the sked list.
+- Added an entry for enabling/disabling sound card access in the keyer since
+  it is still meaningful to have the keyer in case you have a TNC or other
+  device that will key CW based on serial ASCII input.
+  
+2_1_5 - 2005-01-21
+
+- Made network new multipliers display in the correct color.
+- Made it so if I hear from a blacklisted peer, unblacklist him. This should
+  fix A LOT of multi-op difficulty.
+
+2_1_6 - 2005-02-14
+
+- Module .ini files are no longer overwritten on install without explicit
+  request.
+- Corrected internal error when logging a dupe.
+- Added check for modules already running on startup.
+- Added module stop on RoverLog exit.
+- Now the lookup list is updated on logging a QSO.
+- If the band is locked, the WIP band is ignored on WIP acceptance.
+- Made File->New always ask for confirmation.  Alt ... Enter Enter used to
+  wipe out log without warning due to File->New default menu pick.
+- Made accepting WIP push accepted WIP into Alt-Z call stack.
+- Remove stations from WIP if worked without accepting.
+- Added auto-save of module .ini files on module exit.
+- Shortened window titles to better see what windows are in taskbar when
+  minimized.
+- Operator name setting is removed from roverlog.ini.
+- RoverLog only sends 4-digit grids to Keyer now.
+
+2_1_7 - 2005-03-27
+
+- RoverLog now displays lookup database information in addition to
+  information from QSOs in the lookup window.
+- Made Keyer Module properly load voice messages on opening a file.
+
+2_2_0 - 2005-04-10
+
+- RoverLog now displays lookup database information in addition to
+  information from QSOs in the lookup window in buddies mode.
+- K1EL WinKey support added to Keyer.
+- Added support for executing an external mixer program upon keying and
+  dekeying using RoverLog's Keyer.  This can allow you, for example, to
+  send the microphone input of your PC to your rig interface when RoverLog
+  is not keying.  See README_KEYER.TXT.
+
+2_2_1 - 2005-04-15
+
+- Corrected Keyer state transitions when changing between Transparent and
+  WinKey CW keying.
+- Improved checking when making a pass for out of touch desination peers.
+- On each window, made default action buttons for <Return> light red to
+  denote action.
+- Made map redraw more robust.
+
+2_2_2 - 2005-05-08
+
+- Made spacebar bring you back to the last cursor position in the call
+  and recd fields.
+- Made peer communications use a new -async option to further reduce
+  networking delays.
+- Added option for received grid lookup (when going out of the call field)
+  to only fill in the recd grid for worked stations.
+
+2_2_3 - 2005-05-28
+
+- Fixed bug when looking up last grid for known stations where multiple
+  grids would appear in the Recd field on the main window.
+- Added a check for the contest ini file to prevent an exception when
+  trying to source that file.
+
+2_2_4 - 2005-06-06
+
+- If a network peer is blacklisted, still try to communicate next time.
+  There is no delay now because of the callback method used when opening
+  outgoing sockets.
+- Send messages to peers in non-blocking mode to prevent the unlikely
+  possibility that the socket open works but the send does not.
+
+2_2_5 - 2005-06-08
+
+- Made keyer wait 500 ms before sending WinKey initialization message
+  after setting handshake lines to allow power from serial port lines to
+  settle.
+- Corrected "hang" bug when setting computer time in GPS Module.
+- Added setting computer time in GPS Module under Linux.
+
+2_2_6 - 2005-06-28
+
+- Made incoming net logs stop changing the lookup results and the map center.
+- Made logging a QSO only scroll down when logging if the view is already
+  at the bottom.  This prevents unwanted scrolling while reviewing the log.
+- Made band lock prevent F-Key QSYing.
+- Made updates for WIP, etc. happen periodically instead of by exception.
+  This should help keep these items much more up to date, especially on crappy
+  network segments.
+- Made keyer stop looping with WinKey when CW keying is stopped.
+- Made modules ask for exit confirmation if exiting via user action (vs.
+  network exit command).
+- Made first spacebar out a new call select the whole received grid field
+  instead of putting the cursor after the grid.  Successive spacebars for
+  the same call do not change the received grid and place the cursor after
+  the grid.
+- Added a state machine for looking up the received grid square from the
+  callsign when moving from the call field to the received field.  If the
+  user typed something in for the received grid, it is locked so that the
+  lookup is not performed until the QSO is logged, even if the call changes.
+- Made module icons different for easy identification in the Windows
+  taskbar---cool!
+- When the user quits a module, we now ask "are you sure?"  It would be
+  bad to exit a module RoverLog is depending on.
+- We now use a red color if the user has WIP to work (passes or skeds that
+  have come due).
+- We now flag net messages sent to all as such on reception so they don't look
+  unicast.
+- We removed the Alt-g, Alt-r, and Alt-q shortcuts to prevent accidents.
+- Smartened up many startup and incremental algorithms to reduce startup and
+  net service time.  RoverLog used to take a LONG time to start up.  It turns
+  out that the major time hogs on startup were insertion of QSOs into the log
+  list and dupe lookup to protect the integrity of the internal lookup
+  database.  With improvements in these two areas, startup time on my machine
+  was reduced from 24 seconds to around 4 seconds for a 2.25 million point
+  log.
+- Added progress indication for loading in log.  Not sure if I like this.
+  Feedback welcome.
+- For Keyer, added speed pot readback and update for WinKey so speed can be
+  dynamically controlled during WinKey playback---very cool.
+- For Keyer, made it so characters sent via the physical paddles are inserted
+  into message 6 (the scratchpad message)---awesome.
+- Made blacklisting for non-peer items much more visible with every item
+  shown via a red button or other widget on the main window.
+- Made GPS Module non-blocking to make operation more responsive.  This helps
+  A LOT!
+- Made GPS Module blank fields if no GPS data is detected for 10 seconds.
+  This will cause the main RoverLog program to blacklist the GPS module and
+  make it clear that something is going on.
+- Made RoverLog always get its time from the PC clock instead of optionally
+  from the GPS Module.  This is safer.  See the manual.
+- Made the GPS Module warn the user if the GPS time and the PC time are off
+  by a lot (> 10 sec).  This shows up as the time set Enable button colored
+  red.
+- RoverLog now shipped with smaller Freewrap 6.0 instead of 5.61.
+- Added operating Mode to Rig Module capabilities and RoverLog main program
+  reporting.  Works for Icom, need testers for Kenwood and Yaesu.
+- Removed UTC Offset setting.  This can be calculated internally to the Tcl
+  interpretter to remove human error.  This means users no longer have to
+  set this and the PC time can be set to any time zone but RoverLog still
+  knows how to refer to everything in terms of UTC.  RoverClk, the GPS Module
+  and the main RoverLog program were affected.
+- Added option to omit log sort buttons from the main window if desired.
+
+2_2_7 - 2005-07-27
+
+- Fixed network logging UTC offset error.
+- Fixed network error of trying to Blacklist my own peer number.
+
+2_2_8 - 2005-08-24
+
+- Made RoverClk background colors configurable in inied.tcl.  Goofy.
+- When comparing QSOs for Rover checking, FN13 vs. FN13ec would cause RoverLog
+  to prompt to log as a Rover.  This is now fixed.
+- Added a manual grid field to the calculator window to allow bearing
+  calculation without disturbing the QSO entry fields.
+- Added advance warning for skeds to warn you BEFORE each sked comes up.
+- Fixed the network logging UTC offset error for received messages.
+- Looked for WinKey problem only playing part of a CW keyer message.  Cannot
+  find a problem here.  Need help to reproduce.
+- Disabled resizing RoverLog windows unless there is a meaningful way to do so.
+- Made resizable windows expand/contract list or text areas.
+- Added note in manual suggesting turning up the Auto Save Interval for large
+  stations that experience lagging performance later in the contest.  If you
+  set the Auto Save Interval to 5 instead of 1, the log will be saved with
+  every 5th QSO vs. every QSO.  This should prevent a lot of slow down.  Note
+  that if you change the interval to a number larger than 1, you need to be
+  careful to save your log before exiting.
+
+2_3_0 - 2005-09-07
+
+- Added the ability to call an external program when changing bands.  This
+  allows interfacing with the N3FTI parallel port interface via an external
+  command line IO Port write utility (see next item).  For information on
+  the N3FTI interface, see http://www.qsl.net/n3fti.
+- Added a small command line utility "iopwr" that allows writing a value to
+  an IO port such as the parallel port.  See the manual and README_iopwr.txt
+  for more details.
+
+2_3_1 - 2005-09-07
+
+- Added a band menu button for the map window.
+- Added yellow highlighting for important fields.
+
+2_3_2 - 2005-09-18
+
+- Resizing main window vertically now makes the log stretch vertically.
+- Alt-W in sked window now clears all appropriate fields.
+- F12 now also scrolls log display to the end in addition to returning to
+  the call field.
+- Keyer now checks for valid looping delay before scheduling loop.
+- Module windows are now fixed size.
+- If WinKey or voice keyer serial ports do not open, a popup is displayed.
+- Verified that when I hit spacebar from the call field and a grid lookup
+  is performed, the whole Received Grid field is highlighted, but when a
+  lookup is not performed, the cursor returns to the last insert location.
+- Alt-W and/or a different call in the Call field reset grid lookup so
+  it is performed the next time the cursor is moved to the Received Grid
+  field.
+- When Band Lock is on, we no longer copy a QSO's band with "Copy QSO",
+  we instead retain the current band.
+- Added selection for Green Heron Engineering RT-20 rotor controller
+  in Rotor Module.  This uses the Hygain DCU-1 protocol, so it's an alias.
+- Added RC2800DC-alt syntax which sends A####.#[CR] instead of A[CR]####.#[CR]
+  like the older RC2800DC protocol.
+- Added a mechanism for the Keyer Module to accept CW message macro
+  parameters without commanding a message to be sent over the air.
+- Added the custom CW message field to the Main RoverLog Keyer window with
+  some appropriate shortcuts (Alt-W clears, Enter sends).
+- Made it so custom CW messages sent from the Main RoverLog Keyer window can
+  contain macros.
+- Added antenna offset for offset feeds or random rover vehicle orientation.
+  See the manual for an explanation on how to use this feature.
+- Added ADIF log exporting.
+- Added configurable delay between opening voice keyer serial port and
+  fconfiguring it.  This is to help handle slow USB serial ports.
+
+2_3_3 - 2006-01-18
+
+- Fixed a syntax error in rotor.tcl that would cause the module to start up
+  with a blank window and fail to operate.
+- Made it so the Keyer can operate without serial ports, i.e. blank settings.
+  With this set up, you'll stomp on a foot pedal or use some other means to
+  key the radio, then trigger the keyer separately.
+- Made it so the keyer comes up with the "mygrid" setting from its .ini file
+  as the "sent" entry by default.
+- Fixed a bunch of syntax errors in the Rig Module that would make it fail to
+  interface to any rigs properly.
+- Corrected the manual's discussion of saving mixer settings using the QuickMix
+  external mixer program.
+- Added a statement to the manual indicating that RoverLog stores all of its
+  files (including logs) in the installation folder/directory.
+- Made it so the installer places a shortcut to the RoverLog folder on your
+  desktop as a further clue to where the log ends up.
+
+2_4_0 - 
+
+- Made it so the external band switch command is not executed when editing a
+  QSO or at other times when we're not really changing the band of operation.
+- When logging a QSO with "real time" selected, update RoverLog's time just
+  before commiting the QSO to the log to prevent time freezes from occuring
+  in the log.
+- Changed all band references from 903 to 902 to meet Cabrillo standard.
+- Removed "LIGHT" band references.  The Cabrillo standard calls for "300" to
+  be used for laser QSOs.
+- Added Super Lookup module for using an external database to lookup calls
+  that have never been worked. AWESOME!
+- Added Web Lookup.
+- Made contest .ini file selection a menu in inied.tcl.
+
+2_4_1 - 
+
+- Added new Pass Band checkboxes so you can tell the seat you're passing to
+  (and all other multi-op seats) what bands a guy has.
+- Added an option to disable Super Lookup's response to RoverLog prompting
+  to use a found callsign/grid.
+- Added a confirm dialog when deleting a record in Super Lookup.
+- Super lookup now ignores "/R" etc.
+- Super lookup now displays out grid first, then Lat/Lon.
+- Added an option to allow Super Lookup to search as you're typing.
+- Made it so the log now scrolls to the bottom after logging a local QSO.
+- Rotor Module now supports DDE interface with user-specified service/topic.
+- Added a concept of a sked that has been made. It's not deleted, just marked
+  as complete. "Made" skeds are displayed in grey.
+
+2_4_2 - 
+
+- To speed up log loading, fill up the call stack only after the whole log has
+  been loaded.
+- Made annunciator and pass indication more pronounced.
+- For sked window, added earlier/later buttons where scrollbar would be.
+- Remove automatic azimuth in notes when making a pass or sked, it causes
+  confusion if the operator changes the grid square without adjusting the Az.
+- Moved send log and send skeds buttons away from net message on net window.
+- Prompt to confirm sending whole log/skeds from Net window.
+- Fixed: enter N2LB, space, EN99, space, T (to finish call), space.  Grid
+  lookup happens, but I typed EN99.
+- Super lookup, convert city, st to st-city for lookup
+- Added an "Info" window to review old annunciator messages. Click on Info...
+  to reveal.
+- Made it so Super lookup does not cause Roverlog to lock up when RoverLog is
+  set up to use Super lookup responses.
+
+2_4_3 - 
+
+- Made map size configurable.
+- Fixed error receiving passes.
+
+2_4_4 -
+
+- Fixed error calculating reverse bearing when a non-zero antenna offset
+  has been entered.
+- Added Cabrillo 3.0 Log Header Editor. The ARRL robot now accepts this
+  version.
+- Changed 1.2 to 1.2G, 2.3 to 2.3G, etc. up to 300 to 300G. Logs are corrected
+  as they are loaded.
+- Added bump functionality for rotors not intrinsically supporting it. This
+  is done within the Rotor Module by a query, an increment or decrement of
+  one degree, then a position command. THIS IS NOT TESTED, COMMENTS WELCOME.
+- When saving log, truncate all grids to 4-digits. COMMENTS WELCOME. Note:
+  the contest robot will reject QSOs with 6-digit "Sent" grids.
+- Fixed error when cancelling "Save As" and then performing "Save".
+
+To fix your log so it will be accepted by the ARRL robot, do the following:
+
+1. BACKUP YOUR LOG!
+2. Start RoverLog with your log.
+3. File->Save
+
+When your log is loaded, RoverLog translates 1.2 to 1.2G, etc. 
+When your log is saved, RoverLog truncates 6-digit grids to 4-digits.
+
+2_4_5 -
+
+- Fixed bug that would cause the rotor module to fail to start.
+- Auto-reap (mark made) WIP and Skeds as they are worked, even if we don't
+  explicitly accept WIP.
+- Sort skeds by time when saving.
+- Make Page Up and Page Down increase and decrease the keyer speed
+  from the Keyer mini-window within the main RoverLog program.
+- Return to saving 6-digit grids in the log.
+
+2_4_6 - 
+
+- Fixed bug that would raise a "sked isn't an array" error when logging a QSO.
+- Fixed bug that would raise a "::setting(lookupgrid)" error when starting
+  up without a roverlog.ini file.
+
+2_4_7 - 
+
+- Fixed bug that would corrupt saved skeds file thereby losing all skeds.
+- Fixed deleting skeds.
+- Popup dialog box to confirm adding skeds in the past.
+- Return to sked window when invalid entry is detected when making a sked.
+- Add normal windows-type menu to Ini File Editor so you can save from there.
+  Because it has always asked you if you want to save when you exit, it will
+  continue to do that too.
+- Added a status field on the station information window that tells you who
+  the other multi-op stations are working or what window the operator has open.
+  This could be expanded in the future to indicate what the operator is doing
+  as far as RoverLog can tell.
+
+2_5_0 -
+
+- Some stuff.
+- Clock did not restore its location.  Fixed.
+- Mark peers red if they are out of touch on the network.  This does not affect
+  normal operation, and it is cleared automatically when the peer comes back.
+  This will indicate if there are network issues.
+- Reduce number of messages logged to Net Log to make verbose logging more
+  useful.
+- When sending a sked, popup a message if the peer is incommunicado.
+- Fixed 'can't read "stuff(blacklist,lookup)": no such element in array' error.
+- Made Update rate 1 second instead of 10 seconds.
+- Colorized Pass button on Station Info window to indicate the seat is ready
+  to receive a pass (green) or should be consulted or skedded (yellow).
+- If Log Sorting is disabled, put busy controls on the main window to 
+  allow the operator to set/clear his busy status for passing from there.
+- Improved rig control and QSYing to retain the last operating frequency
+  by band and send it to the rig (if any) when QSYing to the band.
+- Speed up Super lookup with large databases by using indexing vs. the default
+  linear search.
+- Fixed: Can't change a working frequency for some reason.  It refreshes to the
+  default value.
+- Fixed: Passing to 10368.1, Band shows up as 300G instead of 10G.
+- When you change bands on pass window, if RL doesn't know the op freq for that
+  band, use the best we know.
+- Made the act of passing recommend the next available time for a sked if the
+  target operator is busy.
+- Pass window correctly picks the next free time for the target seat.
+- If a sked is marked made, hide it in the display so it is not distracting.
+- If a sked is marked made, overwrite with a new sked without confirmation
+  dialog.
+- Revised the "make pass" function to handle either passes or skeds.
+- Upon completing a QSO, clear busy timer.
+- Fixed issue with Super lookup Zip/FCC database where the program seemed to
+  go into a tight loop on some machines.
+- When I bring up the pass window, then change peers, RoverLog now updates
+  the first available time.
+
+2_5_1 -
+
+- Restored lookup of lofreq within Set_Freq to prevent an error calculating
+  the current operating frequency.
+- RoverLog no longer silently skips logging some dupes.
+- Made Super Lookup send all results back to RoverLog upon lookup instead
+  of just the first result.
+- Fixed the PIJ database to remove the extra space in the notes field.
+- Fixed issue that would prevent deleting records from Super Lookup databases.
+
+2_5_2 -
+
+- Fixed "skedrecd" bug when a sked with a 4-digit grid and no notes comes due.
+- Skeds that are moved to the WIP list now stay in the sked list with a
+  different custom color (default green).
+- Skeds that have been made can now be manually deleted from the sked list.
+- Made super lookup convert calls to upper case before doing the lookup.
+- Fixed "windows(net)" bug when sending log.
+- Fixed feature that gave preference to the default Lat/Lon in Super Lookup,
+  thereby forcing your grid to FN13MM.
+- Fixed serial port naming for ports over COM9: in GPS Module, Keyer Module,
+  and Rig Module.  The Rotor Module was already done.
+- Added buttons for selecting among all available serial ports in the Modules
+  using serial ports.
+- RoverLog now allows CALL/R and CALL (w/o /R) in the same grid to count as
+  separate QSOs for scoring purposes.
+- Fixed: Deleting a dupe lowered the indicated score until the log is reloaded.
+- Double clicking on a log entry now edits it.
+- Changed the prompt for logging a Rover to make it more clear, specifically,
+  it no longer says the call is in the log in a different grid because it may
+  no longer be in the log.
+
+2_5_3 -
+
+- Slight improvements to Rig Module, mostly invisible to the user.
+- Added option to make RoverLog send voice keying commands to Rig Module
+  instead of Keyer module. This works with the Elecraft K3 to trigger the
+  radio to play a DVR message within the radio vs. using the PC.
+- In addition to sending the last frequency used by band to the rig when
+  QSYing, RoverLog now sends the mode as well.
+
+2_6_0 -
+
+- Pretty major feature add: 6-digit grid distance-based scoring. This means
+  that 10 GHz contests are supported now!
+- Added 10g.ini contest file to support 10 GHz contests.
+
+2_6_1 -
+
+- Fixed problem with distance and bearing calculations identified and
+  troubleshot by John Isham (N1QLM).  Thanks, John.
+
+2_6_2 -
+
+- Fixed issues with determining what rules we are running (application
+  error with unknown $rules variable).  Thanks to Ken VA3KA.
+- Added serout.bat utility for use with a serial band switching aid.
+
+2_6_3 - 
+
+- Added a field for current rotor position vs. desired rotor position in
+  Rotor Module and main RoverLog.
+- Added capability for main RoverLog to query the Rotor Module so it can
+  update the current position in the Calc window.
+
+2_6_4 -
+
+- Added checkboxes for looping for each keyer message so some can be on and
+  some can be off.
+- Fixed an issue with redrawing maps where just your current grid would light
+  up and all bands were considered, not just the current one.
+
+2_6_5 -
+
+- Fixed an issue where the mode for several rig types was not properly obtained
+  from the radio by the Rig Module.
+
+2_6_6 -
+
+- Added an option to make RoverLog stay on top of other windows.
+- Corrected sending microwave frequencies to Elecraft K2 and K3 rigs.
+- Corrected distance-based scoring to properly count only unique calls per
+  band.
+- Renamed the old Log Header Editor and skipped creation of a link to it
+  during installation to prevent making old Version 2.0 Cabrillo headers.
+
+2_6_8 -
+
+- Added Yaesu FT-897 Support.
+- Added range in kilometers to display.
+- Added support for 2 rigs via Winkey.
+- Fixed extra key/dekey before every keyer transmission.
+- Converted peer communications to UDP to reduce network traffic and
+  increase reliability.
+
+2_6_9 - 
+
+- Updated to new FreeWrap shell.
+- Added missing udp 1.0.9 library to installer.
+
+2_6_10 -
+
+- Changed Ini defaults to avoid trying to reach other RoverLogs and Modules
+  via the network to stop sluggishness when they are not there.
+- Rotor Module talks to ProSisTel rotor controllers with integers now instead
+  of floats.
+  
+2_6_11 - 
+
+- More intensive checking of GGA sentences in GPS Module.
+- Better handling when GPS isn't there---GPS Module sets date/time to system
+  values and main program displays a message in the annunciator and black-
+  lists if the GPS isn't there.
+- Improved handling when missing or cannot open Icon files.
+- Fixed Icom mode set function bug.
+- Added keyer option to key voice keyer serial port when sending CW.
+
+2_7_0 -
+
+- Revamped all networking to use "permanent" TCP sockets instead of the much
+  older temporary TCP sockets and more recent blocking UDP sockets.  This
+  should greatly improve performance.
+- Catch errors writing to network sockets.
+
+2_7_1 - 
+
+- Try to get WIP, etc. from a host if unblacklisted.
+- Tweaked what to do for passing so that we still try to pass if we don't know
+  WIP, BUSY, or WIPLIMIT.
+
+2_7_2 -
+
+- I forgot.
+
+2_7_3 - 
+
+- Added distanced-based log sheet export to a ".1og" file.  See File->Export.
+
+2_7_4 -
+
+- Added August UHF distance scoring.
+- Added lookup methods AE7Q Hamdata, removed ARRL
+
+TODO -
+
+- Fix this in a better way:
+  Enter a partial call, space to grid, put in a couple of chars,
+  space back to call, finish it, space back to grid - whole grid is
+  highlighted, any typing erases it.  Want a cursor at the end.
+- Chase down a reported "datetime" issue.
+- Document CW transcription to message 6.
+- If possible, allow keying the transmitter for voice keyer messages via WinKey.
+- Store/Reload WIP if the user quits/restarts the program.
+- Update the manual.
+- Make a way to log all network traffic to a flat file.
+- Log passes into net window w/ bold.
+- When scheduling or passing, allow selection only for bands the peer has.
+- For passing, need some indication that the station accepted the pass.
+- Super lookup multiple databases in turn in same window with different colors.
+- Make a way to allow scrolling commands and arrows to be passed through to
+  log, sked list, match list, etc. from any entry/widget on each window.
+- Add an option to color the log as loading instead of all entries black.
+- Check with the rig server just as logging a QSO to get the current mode.
+- Typing in net log and score window modifies those windows.  Make typing
+  go into net message field.
+- Maybe use F-keys for peer on pass and sked windows.
+
+- Consider adding a tabbed interface instead of multiple floating windows.
+- Add a metaconfiguration tool to propagate configurations to all stations
+  in a multi-op network.
+- Check default WinKey CW mode (vanilla, Farnsworth, etc.).  It seems like
+  the characters are sent quick with extra space between them.
+- Add a QSO rate meter.
+- Add external log utilities (time shifting, extract all for a call, extract
+  all for a band, sorting).
+- Support Notes for each individual log entry.
+- Support a by-band bearing calculator offset. I.e. if I want North, I
+  really point to X degrees.
+- Support Chat message priorities.
+- Add lookup by grid.

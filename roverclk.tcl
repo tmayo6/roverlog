@@ -1,0 +1,238 @@
+#/bin/sh
+# the next line restarts using tclsh \
+exec wish "$0" "$@"
+
+#
+# RoverClk - A RoverLog accessory that displays the UTC time as RoverLog
+#            would based on the PC's time.
+#
+# Tom Mayo - 2004-08-12
+#
+
+#
+#  Build_Debug
+#
+
+proc Build_Debug { f } {
+  global windows stuff
+
+  toplevel $f
+  wm withdraw $f
+  wm title $f "Debug Log"
+  wm protocol $f WM_DELETE_WINDOW { set stuff(debug) 0 ; \
+    wm withdraw $windows(debug) }
+  if { $::tcl_platform(os) != "Linux" && $::tcl_platform(os) != "Darwin" } {
+    wm iconbitmap $f roverclk.ico
+  }
+
+  set windows(debugtext) [ text $f.st \
+   -width 80 -height 24 -yscrollcommand "$f.ssb set" ]
+  scrollbar $f.ssb -orient vert -command "$f.st yview"
+  pack $f.ssb -side right -fill y
+  pack $f.st -side left -fill both -expand true
+
+  update idletasks
+
+  return $f
+}
+
+#
+#  Popup_Debug - procedure to bring the Debug window up.
+#
+
+proc Popup_Debug { } {
+  global windows stuff
+
+  set stuff(debug) 1
+  wm deiconify $windows(debug)
+  raise $windows(debug)
+  focus $windows(debug)
+}
+
+#
+# Debug - Insert a message into the debug log
+#
+
+proc Debug { s m } {
+  global windows stuff
+
+  if { $stuff(debug) == 0 } {
+    return
+  }
+
+  set t [clock seconds]
+  set date [clock format $t -format "%Y-%m-%d"]
+  set utc [clock format $t -format "%H:%M:%S"]
+  set d "$date $utc"
+
+  $windows(debugtext) insert end "$d: $s: $m\n"
+  $windows(debugtext) see end
+
+  update idletasks
+}
+
+proc Deoctalify { n } {
+  if { [ string range $n 0 0 ] == "0" } {
+    set n [ string range $n 1 1 ]
+  }
+  return $n
+}
+
+proc Update { } {
+  global stuff
+
+  if { [ info exists ::updateafterjob ] } {
+    after cancel $::updateafterjob
+  }
+      
+  set ::updateafterjob [ after 100 Update ]
+
+  if { ! [ file exists "roverclk.txt" ] } {
+    Net_Exit
+  }
+
+  set t [expr $stuff(utcoffset) * 3600 + [clock seconds]]
+  set ::date [clock format $t -format "%Y-%m-%d"]
+  set ::utc  [clock format $t -format "%H%M"]
+  set ::secs [clock format $t -format "%S"]
+
+  set minutes [ Deoctalify [ clock format $t -format "%M" ] ]
+
+  if { [ expr $minutes % 2 ] == 0 } {
+    $::edate configure -disabledbackground $::evencolor -disabledforeground $::evenfgcolor
+    $::eutc configure -disabledbackground $::evencolor -disabledforeground $::evenfgcolor
+    $::esecs configure -disabledbackground $::evencolor -disabledforeground $::evenfgcolor
+  } else {
+    $::edate configure -disabledbackground $::oddcolor -disabledforeground $::oddfgcolor
+    $::eutc configure -disabledbackground $::oddcolor -disabledforeground $::oddfgcolor
+    $::esecs configure -disabledbackground $::oddcolor -disabledforeground $::oddfgcolor
+  }
+
+}
+
+proc Save_Loc { } {
+  global .
+
+  set fid [ open "roverclk_loc.ini" w 0666 ]
+
+  set t [clock seconds]
+  set date [clock format $t -format "%Y-%m-%d"]
+  set utc [clock format $t -format "%H:%M:%S"]
+  set d "$date $utc"
+
+  puts $fid "# Saved $d"
+
+  set s [ wm state . ]
+  puts $fid "# . $s"
+  puts $fid "wm state . $s"
+  set g [ wm geometry . ]
+  puts $fid "# . $g"
+  scan $g "%*dx%*d+%d+%d" x y
+  puts $fid "wm geometry . =+$x+$y"
+
+  close $fid
+}
+
+proc Net_Exit { } {
+  Save_Loc
+  file delete "roverclk.txt"
+  exit
+}
+
+proc My_Exit { } {
+
+  set ok [ tk_messageBox -icon warning -type okcancel \
+    -title "Confirm Clock Module Exit" -message \
+    "Do you really want to exit the Clock Module?\nSelect Ok to exit or Cancel to abort exit." ]
+  if { $ok != "ok" } {
+    return
+  }
+
+  Net_Exit
+}
+
+proc Guess_UTC_Offset { } {
+
+  set t [ clock seconds ]
+  set s1 [ clock format $t -format "%a %b %d %H:%M:%S" -gmt true ]
+  set s2 [ clock format $t -format "%a %b %d %H:%M:%S" -gmt false ]
+  set t1 [ clock scan $s1 ]
+  set t2 [ clock scan $s2 ]
+  return [ expr ( $t1 - $t2 ) / 3600 ]
+}
+
+set ::edate [ entry .edate -textvariable ::date -font \
+  { "lucida console" 14 } -width 10 -state disabled \
+  -disabledforeground white -disabledbackground black -relief flat ]
+set ::eutc [ entry .eutc -textvariable ::utc -font \
+  { "lucida console" 18 bold } -width 4 -state disabled \
+  -disabledforeground white -disabledbackground black -relief flat ]
+set ::esecs [ entry .esecs -textvariable ::secs -font \
+  { "lucida console" 24 bold } -width 2 -state disabled \
+  -disabledforeground white -disabledbackground black -relief flat ]
+
+grid .edate -      -sticky news
+grid .eutc  .esecs -sticky news
+
+wm title . "Clock"
+
+set stuff(utcoffset) [ Guess_UTC_Offset ]
+set ::setting(txminute) "odd"
+
+set windows(debug) [ Build_Debug .debug ]
+set stuff(debug) 0
+
+if { [ file exists "roverclk.txt" ] } {
+  set ok [ tk_messageBox -icon warning -type okcancel \
+    -title "Clock Module Warning" -message \
+    "The file roverclk.txt already exists.\nModule already running?\nSelect Ok to start another instance or\nCancel to continue using the existing instance." ]
+  if { $ok != "ok" } {
+    exit
+  }
+}
+
+set fid [ open "roverclk.txt" w ]
+puts $fid "This is a temporary file that was automatically generated by the RoverLog Clock program.\nDelete this file to stop the RoverLog clock if running."
+close $fid
+
+set ::setting(txcolor)   "red"
+set ::setting(rxcolor)   "green"
+set ::setting(txfgcolor) "yellow"
+set ::setting(rxfgcolor) "blue"
+
+if [file readable "roverlog.ini"] {
+  source "roverlog.ini"
+}
+
+if { $::setting(txminute) == "odd" } {
+  set ::oddcolor $::setting(txcolor)
+  set ::evencolor $::setting(rxcolor)
+  set ::oddfgcolor $::setting(txfgcolor)
+  set ::evenfgcolor $::setting(rxfgcolor)
+} else {
+  set ::oddcolor $::setting(rxcolor)
+  set ::evencolor $::setting(txcolor)
+  set ::oddfgcolor $::setting(rxfgcolor)
+  set ::evenfgcolor $::setting(txfgcolor)
+}
+
+if { $tcl_platform(os) != "Linux" && $tcl_platform(os) != "Darwin" } {
+  wm iconbitmap . roverclk.ico
+}
+wm protocol . WM_DELETE_WINDOW My_Exit
+wm resizable . 0 0
+
+
+if { [ file readable "roverclk_loc.ini" ] } {
+  source "roverclk_loc.ini"
+  update idletasks
+}
+
+
+if { $tcl_platform(os) != "Linux" && $tcl_platform(os) != "Darwin" } {
+  wm attributes . -topmost yes
+}
+
+bind all <Alt-Key-u> Popup_Debug
+
+Update
