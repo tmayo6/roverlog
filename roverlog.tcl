@@ -8,7 +8,7 @@ exec wish "$0" "$@"
 # by Tom Mayo, N1MU
 #
 
-set stuff(rlversion) "2_7_4"
+set stuff(rlversion) "2_7_5"
 
 #
 # Debug - Insert a message into the debug log
@@ -5797,6 +5797,7 @@ proc Redraw_Score { } {
     set j 0
     foreach b $::setting(bands) {
       set distbased_pts($b) [ lindex $::setting(bandpts) $j ]
+      Debug "Redraw_Score" "distbase_pts($b) = $distbased_pts($b)"
       incr j
     }
 
@@ -5899,9 +5900,9 @@ proc Redraw_Score { } {
           incr totaldistscore $distscore
           $windows(scoretext) insert insert "\n$band: $distbased_qsos($band) QSO Pts + $distbased_dist($band) km = $distscore"
         } elseif { $::setting(rules) == "distmult" } {
-          set distmultscore [ expr $distbased_qsos($band) * $distbased_dist($band) ]
+          set distmultscore [ expr $distbased_pts($band) * $distbased_dist($band) ]
           incr totaldistmultscore $distmultscore
-          $windows(scoretext) insert insert "\n$band: $distbased_qsos($band) QSO Pts * $distbased_dist($band) km = $distmultscore"
+          $windows(scoretext) insert insert "\n$band: $distbased_pts($band) QSO Pts * $distbased_dist($band) km = $distmultscore"
 	} else {
           $windows(scoretext) insert insert "\n$band: $distbased_qsos($band) QSO Pts, $distbased_dist($band) km"
 	}

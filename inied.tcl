@@ -399,7 +399,7 @@ if { [ file readable "roverlog.ini" ] } {
 
 wm title . "Ini File Editor - roverlog.ini"
 
-set ::setting(iniversion) "2_7_4"
+set ::setting(iniversion) "2_7_5"
 
 menu .m -relief raised -borderwidth 2
 . config -menu .m
