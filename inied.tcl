@@ -32,7 +32,7 @@ proc Setup_Options_Table { } {
   set table(1,0) [ list "logfile"    "Log File Name" "entry" "\"" "\"" ]
   set table(1,1) [ list "lookupfile" "Lookup File Name" "entry" "\"" "\"" ]
   set table(1,2) [ list "weblookup" "Web Lookup Service" "menu" [ list Buckmaster AE7Q Hamdata QRZ ] "\"" "\"" ]
-  set table(1,3) [ list "contestini" "Contest .ini File" "menu" [ list janvhf.ini janvhfbasic.ini junvhf.ini junvhfbasic.ini auguhf-dist.ini auguhf.ini auguhfbasic.ini sepvhf.ini sepvhfbasic.ini cqvhf.ini sprint50.ini sprint144.ini sprint222.ini sprint432.ini sprintmicro.ini 10g.ini ] "\"" "\"" ]
+  set table(1,3) [ list "contestini" "Contest .ini File" "menu" [ list janvhf.ini janvhfbasic.ini junvhf.ini junvhfbasic.ini aug222up-dist.ini auguhf.ini auguhfbasic.ini sepvhf.ini sepvhfbasic.ini cqvhf.ini sprint50.ini sprint144.ini sprint222.ini sprint432.ini sprintmicro.ini 10g.ini ] "\"" "\"" ]
   set table(1,4) [ list "autosave"   "Auto Save Interval (QSOs)" "menu" [ list 0 1 2 5 10 ] " " " " ]
 
   set title(2) "Display"

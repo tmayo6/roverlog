@@ -137,6 +137,7 @@ Section "Contest .ini Files (overwrites any old files)"
   File auguhf.ini
   File auguhfbasic.ini
   File auguhf-dist.ini
+  File aug222up-dist.ini
   File cqvhf.ini
   File janvhf.ini
   File janvhfbasic.ini
@@ -262,6 +263,7 @@ Section "Uninstall"
   Delete $INSTDIR\auguhf.ini
   Delete $INSTDIR\auguhfbasic.ini
   Delete $INSTDIR\auguhf-dist.ini
+  Delete $INSTDIR\aug222up-dist.ini
   Delete $INSTDIR\cqvhf.ini
   Delete $INSTDIR\datetime.bat
   Delete $INSTDIR\gps.ini
