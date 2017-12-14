@@ -8,7 +8,7 @@ exec wish "$0" "$@"
 # by Tom Mayo, N1MU
 #
 
-set stuff(rlversion) "2_7_5"
+set stuff(rlversion) "2_7_6"
 
 #
 # Debug - Insert a message into the debug log
@@ -3250,8 +3250,7 @@ proc Dist_Calc_Km { gridl gridr } {
   set sentll [ To_LatLon $gridl ]
   set recdll [ To_LatLon $gridr ]
 
-  if { [ Valid_Grid $gridl ] && [ Valid_Grid $gridr ] &&
-    $sentll != $recdll } {
+  if { [ Valid_Grid $gridl ] && [ Valid_Grid $gridr ] } {
 
     set latlonl $sentll
     set latlonr $recdll
@@ -3261,16 +3260,24 @@ proc Dist_Calc_Km { gridl gridr } {
     scan $latlonl "%f %f" latl lonl
     scan $latlonr "%f %f" latr lonr
 
-    set dlon [ expr ( $lonl - $lonr ) / 180.0 * $pi ]
+    # haversine formula from https://en.wikipedia.org/wiki/Haversine_formula
+    # using ARRL sanctioned earth radius of 6371.14
+    # with round-up and minimum dx of 1.0 km
+    set dlon [ expr ( $lonl - $lonr ) / (2.0 * 180.0) * $pi ]
+    set dlat [ expr ( $latl - $latr ) / (2.0 * 180.0) * $pi ]
     set mylatl [ expr ( $latl / 180.0 * $pi ) ]
     set mylatr [ expr ( $latr / 180.0 * $pi ) ]
 
-    set temp [ expr sin( $mylatl ) * sin( $mylatr ) + \
-                    cos( $mylatl ) * cos( $mylatr ) * cos( $dlon ) ]
+    set temp [ expr sin( $dlat ) * sin( $dlat ) + \
+                    cos( $mylatl ) * cos( $mylatr ) * sin( $dlon ) * sin( $dlon ) ]
 
     if { $temp > 1 } { set temp 1.0 }
+    if { $temp < 0 } { set temp 0.0 }
 
-    set distkm [ expr 6378.1 * acos( $temp ) ]
+    set distkm [ expr ceil( 2.0 * 6371.14 * asin( sqrt( $temp ) ) ) ]
+
+    if { $distkm < 1 } { set distkm 1.0 }
+
 
     return $distkm
 
