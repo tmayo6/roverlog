@@ -1103,6 +1103,10 @@ When your log is saved, RoverLog truncates 6-digit grids to 4-digits.
 - Added August UHF distance scoring.
 - Added lookup methods AE7Q Hamdata, removed ARRL
 
+2_7_5 - 
+
+- Fixed bug in calculating distance/multiplier scoring.
+
 TODO -
 
 - Fix this in a better way:
