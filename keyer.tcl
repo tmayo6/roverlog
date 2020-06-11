@@ -598,6 +598,29 @@ proc Open_CW { } {
 
   } else {
 
+  	Debug "Open_CW" "Mode $::setting(keyermode) TTY Control $::setting(cwdkeyttycontrol)"
+
+    switch -exact -- $::tcl_platform(os) {
+      "Darwin" {
+        fconfigure $stuff(keyerportfid) -mode \
+          $::setting(keyermode) \
+          -buffering none -encoding binary -translation { binary binary } \
+          -blocking 0
+      }
+      "Linux" {
+        fconfigure $stuff(keyerportfid) -handshake none -mode \
+          $::setting(keyermode) -ttycontrol $::setting(cwdkeyttycontrol) \
+          -buffering none -encoding binary -translation { binary binary } \
+          -blocking 0
+      }
+      default {
+        fconfigure $stuff(keyerportfid) -handshake none -mode \
+          $::setting(keyermode) -ttycontrol $::setting(cwdkeyttycontrol) \
+          -buffering none -encoding binary -translation { binary binary } \
+          -blocking 0
+      }
+    }
+
     # set the hardware lines to the dekeyed state.
     Tx_Dekey_CW
 
@@ -1633,6 +1656,7 @@ proc Play_CW { i } {
 
     # Spit the message out the serial port as well
     if { [ info exists stuff(keyerportfid) ] } {
+      Debug "Play_CW" "sending to serial port"
       puts $stuff(keyerportfid) "$msg\n"
     }
 
@@ -1761,9 +1785,10 @@ set windows(.) .
 
 # Make the debug window early to allow debugging
 set windows(debug) [Build_Debug .debug]
+Popup_Debug
 
 # set default values
-set stuff(debug) 0
+set stuff(debug) 1
 
 # station defaults
 set ::setting(keyeripport) 32126
